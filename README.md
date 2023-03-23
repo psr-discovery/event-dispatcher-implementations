@@ -127,7 +127,7 @@ use PsrDiscovery\Discover;
 use PsrDiscovery\Implementations\Psr14\EventDispatchers;
 
 // Only discover a specific implementation of PSR-14.
-Clients::use('league/event');
+EventDispatchers::use('league/event');
 
 // Return an instance of League\Event\Dispatcher,
 // or null if it is not available.
