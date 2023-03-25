@@ -24,12 +24,12 @@ Successful discovery requires the presence of a compatible implementation in the
 
 ## Implementations
 
-The discovery of available implementations is based on [a list of well-known libraries](https://packagist.org/providers/psr/event-dispatcher-implementation) that support the `psr/event-dispatcher-implementation` interface. These include:
+The following `psr/event-dispatcher-implementation` implementations are discovered and instantiated automatically:
 
--   [symfony/event-dispatcher](https://github.com/symfony/event-dispatcher) ^4.3 | ^5.0 | ^6.0
--   [league/event](https://github.com/thephpleague/event) ^3.0
--   [yiisoft/event-dispatcher](https://github.com/yiisoft/event-dispatcher) ^1.0
 -   [carlosas/simple-event-dispatcher](https://github.com/carlosas/simple-event-dispatcher) ^0.1.0
+-   [league/event](https://github.com/thephpleague/event) ^3.0
+-   [symfony/event-dispatcher](https://github.com/symfony/event-dispatcher) ^4.3 | ^5.0 | ^6.0
+-   [yiisoft/event-dispatcher](https://github.com/yiisoft/event-dispatcher) ^1.0
 
 The following mock implementations are also available:
 
@@ -48,10 +48,10 @@ composer require psr-discovery/event-dispatcher-implementations
 ```php
 use PsrDiscovery\Discover;
 
-// Return an instance of the first discovered PSR-18 HTTP Client implementation.
+// Return an instance of the first discovered PSR-14 Event Dispatcher implementation.
 $eventDispatcher = Discover::eventDispatcher();
 
-// Send a request using the discovered HTTP Client.
+// Send a request using the discovered Event Dispatcher.
 eventDispatcher->dispatch(...);
 ```
 
@@ -111,7 +111,7 @@ EventDispatchers::prefer('league/event');
 // Return an instance of League\Event\Dispatcher,
 // or the next available from the list of candidates,
 // Returns null if none are discovered.
-$factory = Discover::eventDispatcher();
+$dispatcher = Discover::eventDispatcher();
 ```
 
 This will cause the `eventDispatcher()` method to return the preferred implementation if it is available, otherwise, it will fall back to the default behavior.
@@ -131,7 +131,7 @@ EventDispatchers::use('league/event');
 
 // Return an instance of League\Event\Dispatcher,
 // or null if it is not available.
-$factory = Discover::eventDispatcher();
+$dispatcher = Discover::eventDispatcher();
 ```
 
 This will cause the `eventDispatcher()` method to return the preferred implementation if it is available, otherwise, it will return `null`.
