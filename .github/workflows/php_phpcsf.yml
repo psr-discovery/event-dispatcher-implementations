@@ -1,20 +1,14 @@
+name: "PHP CS Fixer"
+
 on:
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-      - ready_for_review
-      - converted_to_draft
-      - review_requested
+  pull_request_target: {}
   push:
     branches:
       - 1.x
 
 jobs:
-  run:
-    name: php-cs-fixer
+  phpcsf:
+    name:
     runs-on: ${{ matrix.operating-systems }}
 
     strategy:
