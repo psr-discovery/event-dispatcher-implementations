@@ -13,14 +13,30 @@ use PsrDiscovery\Implementations\Implementation;
 
 final class EventDispatchers extends Implementation implements EventDispatchersContract
 {
-    private static ?CandidatesCollection $candidates                              = null;
-    private static ?EventDispatcherInterface $singleton                           = null;
-    private static ?EventDispatcherInterface $using                               = null;
+    private static ?CandidatesCollection     $candidates         = null;
+    private static ?CandidatesCollection     $extendedCandidates = null;
+    private static ?EventDispatcherInterface $singleton          = null;
+    private static ?EventDispatcherInterface $using              = null;
 
     public static function add(CandidateEntity $candidate): void
     {
         parent::add($candidate);
         self::use(null);
+    }
+
+    /**
+     * @psalm-suppress MixedInferredReturnType,MixedReturnStatement
+     */
+    public static function allCandidates(): CandidatesCollection
+    {
+        if (null !== self::$extendedCandidates) {
+            return self::$extendedCandidates;
+        }
+
+        self::$extendedCandidates = CandidatesCollection::create();
+        self::$extendedCandidates->set(self::candidates());
+
+        return self::$extendedCandidates;
     }
 
     /**
@@ -77,6 +93,11 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
         }
 
         return Discover::eventDispatcher();
+    }
+
+    public static function discoveries(): array
+    {
+        return Discover::eventDispatchers();
     }
 
     public static function prefer(string $package): void

@@ -19,6 +19,11 @@ interface EventDispatchersContract extends ImplementationContract
     public static function add(CandidateEntity $candidate): void;
 
     /**
+     * Return all potential candidates, including those that cannot be instantiated automatically.
+     */
+    public static function allCandidates(): CandidatesCollection;
+
+    /**
      * Return the candidates collection.
      */
     public static function candidates(): CandidatesCollection;
@@ -27,6 +32,13 @@ interface EventDispatchersContract extends ImplementationContract
      * Discover and instantiate a matching implementation.
      */
     public static function discover(): ?EventDispatcherInterface;
+
+    /**
+     * Returns an array with all discovered implementations.
+     *
+     * @return CandidateEntity[]
+     */
+    public static function discoveries(): array;
 
     /**
      * Prefer a package over all others.
