@@ -13,10 +13,13 @@ use PsrDiscovery\Implementations\Implementation;
 
 final class EventDispatchers extends Implementation implements EventDispatchersContract
 {
-    private static ?CandidatesCollection     $candidates         = null;
+    private static ?CandidatesCollection     $candidates = null;
+
     private static ?CandidatesCollection     $extendedCandidates = null;
-    private static ?EventDispatcherInterface $singleton          = null;
-    private static ?EventDispatcherInterface $using              = null;
+
+    private static ?EventDispatcherInterface $singleton = null;
+
+    private static ?EventDispatcherInterface $using = null;
 
     public static function add(CandidateEntity $candidate): void
     {
@@ -29,7 +32,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (null !== self::$extendedCandidates) {
+        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -44,7 +47,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
      */
     public static function candidates(): CandidatesCollection
     {
-        if (null !== self::$candidates) {
+        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -88,7 +91,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
      */
     public static function discover(): ?EventDispatcherInterface
     {
-        if (null !== self::$using) {
+        if (self::$using instanceof \Psr\EventDispatcher\EventDispatcherInterface) {
             return self::$using;
         }
 
@@ -116,7 +119,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
 
     public static function singleton(): ?EventDispatcherInterface
     {
-        if (null !== self::$using) {
+        if (self::$using instanceof \Psr\EventDispatcher\EventDispatcherInterface) {
             return self::$using;
         }
 
@@ -126,6 +129,6 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
     public static function use(?EventDispatcherInterface $instance): void
     {
         self::$singleton = $instance;
-        self::$using     = $instance;
+        self::$using = $instance;
     }
 }
