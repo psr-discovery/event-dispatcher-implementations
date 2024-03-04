@@ -61,7 +61,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
 
         self::$candidates->add(CandidateEntity::create(
             package: 'symfony/event-dispatcher',
-            version: '^4.3 | ^5.0 | ^6.0',
+            version: '^4.3 | ^5.0 | ^6.0 | ^7.0',
             builder: static fn (string $class = '\Symfony\Component\EventDispatcher\EventDispatcher'): object => new $class(),
         ));
 
