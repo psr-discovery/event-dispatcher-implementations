@@ -32,7 +32,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
      */
     public static function allCandidates(): CandidatesCollection
     {
-        if (self::$extendedCandidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$extendedCandidates instanceof CandidatesCollection) {
             return self::$extendedCandidates;
         }
 
@@ -47,7 +47,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
      */
     public static function candidates(): CandidatesCollection
     {
-        if (self::$candidates instanceof \PsrDiscovery\Collections\CandidatesCollection) {
+        if (self::$candidates instanceof CandidatesCollection) {
             return self::$candidates;
         }
 
@@ -91,7 +91,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
      */
     public static function discover(): ?EventDispatcherInterface
     {
-        if (self::$using instanceof \Psr\EventDispatcher\EventDispatcherInterface) {
+        if (self::$using instanceof EventDispatcherInterface) {
             return self::$using;
         }
 
@@ -119,7 +119,7 @@ final class EventDispatchers extends Implementation implements EventDispatchersC
 
     public static function singleton(): ?EventDispatcherInterface
     {
-        if (self::$using instanceof \Psr\EventDispatcher\EventDispatcherInterface) {
+        if (self::$using instanceof EventDispatcherInterface) {
             return self::$using;
         }
 
