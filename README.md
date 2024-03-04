@@ -28,7 +28,7 @@ The following `psr/event-dispatcher-implementation` implementations are discover
 
 -   [carlosas/simple-event-dispatcher](https://github.com/carlosas/simple-event-dispatcher) ^0.1.0
 -   [league/event](https://github.com/thephpleague/event) ^3.0
--   [symfony/event-dispatcher](https://github.com/symfony/event-dispatcher) ^4.3 | ^5.0 | ^6.0
+-   [symfony/event-dispatcher](https://github.com/symfony/event-dispatcher) ^4.3 | ^5.0 | ^6.0 | ^7.0
 -   [yiisoft/event-dispatcher](https://github.com/yiisoft/event-dispatcher) ^1.0
 
 The following mock implementations are also available:
